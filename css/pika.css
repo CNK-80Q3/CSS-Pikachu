@@ -1,6 +1,6 @@
 .face {
   position: relative;
-  width: 300px;
+  width: 280px;
   height: 200px;
   background-color: #fad31d;
   overflow: hidden;
@@ -17,7 +17,7 @@
 }
 
 .left-eye {
-  left: 50px;
+  left: 40px;
 }
 
 .left-eye::before {
@@ -33,7 +33,7 @@
 }
 
 .right-eye {
-  right: 50px;
+  right: 40px;
 }
 
 .right-eye::before {
@@ -51,7 +51,7 @@
 .nose {
   position: absolute;
   top: 35px;
-  left: 140px;
+  left: 130px;
   border: 10px solid;
   border-color: #000 transparent transparent transparent;
   border-radius: 50%;
@@ -70,11 +70,11 @@
 }
 
 .left-cheek {
-  left: 10px;
+  left: 0;
 }
 
 .right-cheek {
-  right: 10px;
+  right: 0;
 }
 
 .lips {
@@ -89,14 +89,14 @@
 }
 
 .left-lip {
-  left: 105px;
+  left: 95px;
   border-right: none;
   border-bottom-left-radius: 40px 30px;
   transform: rotateZ(-20deg);
 }
 
 .right-lip {
-  right: 105px;
+  right: 95px;
   border-left: none;
   border-bottom-right-radius: 40px 30px;
   transform: rotateZ(20deg);
@@ -117,7 +117,7 @@
   display: inline-block;
   position: absolute;
   bottom: 15px;
-  left: 100px;
+  left: 90px;
   width: 100px;
   height: 450px;
   background-color: #6f030e;
@@ -151,7 +151,7 @@
 .chin {
   position: absolute;
   bottom: 0;
-  left: 110px;
+  left: 100px;
   width: 80px;
   height: 120px;
   background-color: #d99c25;

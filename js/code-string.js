@@ -1,4 +1,4 @@
-const code = `.face {
+export const code = `.face {
   position: relative;
   width: 280px;
   height: 200px;
@@ -17,7 +17,7 @@ const code = `.face {
 }
 
 .left-eye {
-  left: 40px;
+  left: 50px;
 }
 
 .left-eye::before {
@@ -33,7 +33,7 @@ const code = `.face {
 }
 
 .right-eye {
-  right: 40px;
+  right: 50px;
 }
 
 .right-eye::before {
@@ -51,7 +51,7 @@ const code = `.face {
 .nose {
   position: absolute;
   top: 35px;
-  left: 130px;
+  left: 140px;
   border: 10px solid;
   border-color: #000 transparent 
   transparent transparent;
@@ -71,11 +71,11 @@ const code = `.face {
 }
 
 .left-cheek {
-  left: 0;
+  left: 10px;
 }
 
 .right-cheek {
-  right: 0;
+  right: 10px;
 }
 
 .lips {
@@ -90,14 +90,14 @@ const code = `.face {
 }
 
 .left-lip {
-  left: 95px;
+  left: 105px;
   border-right: none;
   border-bottom-left-radius: 40px 30px;
   transform: rotateZ(-20deg);
 }
 
 .right-lip {
-  right: 95px;
+  right: 105px;
   border-left: none;
   border-bottom-right-radius: 40px 30px;
   transform: rotateZ(20deg);
@@ -118,7 +118,7 @@ const code = `.face {
   display: inline-block;
   position: absolute;
   bottom: 15px;
-  left: 90px;
+  left: 100px;
   width: 100px;
   height: 450px;
   background-color: #6f030e;
@@ -152,7 +152,7 @@ const code = `.face {
 .chin {
   position: absolute;
   bottom: 0;
-  left: 100px;
+  left: 110px;
   width: 80px;
   height: 120px;
   background-color: #d99c25;
@@ -171,58 +171,3 @@ const code = `.face {
   background-color: #fad31d;
   border-radius: 50%;
 }`;
-
-const container = document.querySelector("#code-area");
-const styleTag = document.querySelector("#styleTag");
-let playBtn = document.querySelector(".start-btn");
-
-// 创建Player构造函数
-function Player() {
-  this.isPlaying = false;
-  this.intervalId = 0;
-  this.n = 0;
-  this.codeStr = "";
-  this.startPlay = function() {
-    if (this.isPlaying === false) {
-      this.intervalId = setInterval(() => {
-        //截取代码，更新至代码显示区和样式标签
-        this.codeStr = code.substring(0, this.n);
-        container.innerHTML = this.codeStr;
-        styleTag.innerHTML = this.codeStr;
-        this.n++;
-        container.scrollTop = container.scrollHeight;
-        if (this.n >= code.length) {
-          clearInterval(this.intervalId);
-          this.isPlaying = false;
-          playBtn.classList.remove("clicked");
-          playBtn.innerHTML = "REPLAY";
-          this.n = 0;
-        }
-      }, 5);
-      this.isPlaying = true;
-      event.target.classList.add("clicked");
-      event.target.innerHTML = "STOP";
-    } else {
-      this.stopPlay();
-    }
-  };
-
-  this.stopPlay = function() {
-    clearInterval(this.intervalId);
-    this.isPlaying = false;
-
-    playBtn.classList.remove("clicked");
-    playBtn.innerHTML = "PLAY";
-  };
-}
-
-// 创建Player实例对象
-const Pika = new Player();
-// 添加事件监听
-playBtn.addEventListener("click", () => {
-  if (Pika.isPlaying === false) {
-    Pika.startPlay();
-  } else {
-    Pika.stopPlay();
-  }
-});
