@@ -174,55 +174,79 @@ const code = `.face {
 
 const container = document.querySelector("#code-area");
 const styleTag = document.querySelector("#styleTag");
-let playBtn = document.querySelector(".start-btn");
+let playBtn = document.querySelector(".play-btn");
+let speedBtns = document.querySelectorAll(".speed-btn");
 
 // 创建Player构造函数
 function Player() {
   this.isPlaying = false;
   this.intervalId = 0;
-  this.n = 0;
+  this.codeLength = 0;
   this.codeStr = "";
-  this.startPlay = function() {
-    if (this.isPlaying === false) {
-      this.intervalId = setInterval(() => {
-        //截取代码，更新至代码显示区和样式标签
-        this.codeStr = code.substring(0, this.n);
-        container.innerHTML = this.codeStr;
-        styleTag.innerHTML = this.codeStr;
-        this.n++;
-        container.scrollTop = container.scrollHeight;
-        if (this.n >= code.length) {
-          clearInterval(this.intervalId);
-          this.isPlaying = false;
-          playBtn.classList.remove("clicked");
-          playBtn.innerHTML = "REPLAY";
-          this.n = 0;
-        }
-      }, 5);
-      this.isPlaying = true;
-      event.target.classList.add("clicked");
-      event.target.innerHTML = "STOP";
-    } else {
-      this.stopPlay();
-    }
-  };
-
-  this.stopPlay = function() {
-    clearInterval(this.intervalId);
-    this.isPlaying = false;
-
-    playBtn.classList.remove("clicked");
-    playBtn.innerHTML = "PLAY";
-  };
+  this.delay = 100;
+  this.current = "";
 }
 
+Player.prototype.play = function() {
+  if (this.isPlaying === false) {
+    this.isPlaying = !this.isPlaying;
+    playBtn.classList.add("clicked");
+    playBtn.innerHTML = "STOP";
+    this.intervalId = setInterval(() => {
+      //截取代码，更新至代码显示区和样式标签
+      this.codeStr = code.substring(0, this.codeLength);
+      container.innerHTML = this.codeStr;
+      styleTag.innerHTML = this.codeStr;
+      this.codeLength++;
+      container.scrollTop = container.scrollHeight;
+      if (this.codeLength >= code.length) {
+        this.stopPlay();
+        playBtn.innerHTML = "REPLAY";
+        this.codeLength = 0;
+      }
+    }, this.delay);
+  } else {
+    this.stopPlay();
+  }
+};
+
+Player.prototype.stopPlay = function() {
+  clearInterval(this.intervalId);
+  this.isPlaying = !this.isPlaying;
+  playBtn.classList.remove("clicked");
+  playBtn.innerHTML = "PLAY";
+};
+
+Player.prototype.ctrlSpeed = function(multiple) {
+  this.delay = (1 / multiple) * 100;
+  clearInterval(this.intervalId);
+  speedBtns.forEach(item => {
+    item.innerHTML === this.current
+      ? item.classList.add("clicked")
+      : item.classList.remove("clicked");
+  });
+};
+
 // 创建Player实例对象
-const Pika = new Player();
+let Pika = new Player();
+
 // 添加事件监听
 playBtn.addEventListener("click", () => {
   if (Pika.isPlaying === false) {
-    Pika.startPlay();
+    Pika.play();
   } else {
     Pika.stopPlay();
   }
+});
+
+speedBtns.forEach(function(item) {
+  let multiple = item.innerHTML.match(/\d/g).join("") * 1;
+  item.addEventListener("click", () => {
+    Pika.current = item.innerHTML;
+    Pika.ctrlSpeed(multiple);
+    if (Pika.isPlaying === true) {
+      Pika.isPlaying = false;
+      Pika.play();
+    }
+  });
 });
