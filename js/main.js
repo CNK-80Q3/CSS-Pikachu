@@ -176,6 +176,7 @@ const container = document.querySelector("#code-area");
 const styleTag = document.querySelector("#styleTag");
 let playBtn = document.querySelector(".play-btn");
 let speedBtns = document.querySelectorAll(".speed-btn");
+let welcome = document.querySelector(".welcome");
 
 // 创建Player构造函数
 function Player() {
@@ -184,10 +185,11 @@ function Player() {
   this.codeLength = 0;
   this.codeStr = "";
   this.delay = 100;
-  this.current = "";
+  this.current = 1;
 }
 
 Player.prototype.play = function() {
+  welcome.style.display = "none";
   if (this.isPlaying === false) {
     this.isPlaying = !this.isPlaying;
     playBtn.classList.add("clicked");
