@@ -34,15 +34,97 @@
 }
 
 .left-ear {
-  top: 10px;
-  left: -70px;
+  top: -110px;
+  left: -160px;
+  transform-origin: top right;
   transform: rotate(-65deg) translateZ(0);
+  animation-name: left-ear-move;
+  animation-duration: 3.6s;
 }
 
 .right-ear {
-  top: 20px;
-  right: -70px;
-  transform: rotate(255deg) translateZ(0);
+  top: -100px;
+  right: 125px;
+  transform-origin: top right;
+  transform: rotate(-105deg) translateZ(0);
+  animation-name: right-ear-move;
+  animation-duration: 3.6s;
+}
+
+@keyframes left-ear-move {
+  15% {
+    transform: rotate(-70deg) translateZ(0)
+  }
+
+  25% {
+    transform: rotate(-70deg) translateZ(0)
+  }
+
+  35% {
+    transform: rotate(-65deg) translateZ(0)
+  }
+
+  55% {
+    transform: rotate(-60deg) translateZ(0)
+  }
+
+  70% {
+    transform: rotate(-60deg) translateZ(0)
+  }
+
+  80% {
+    transform: rotate(-65deg) translateZ(0)
+  }
+
+  85% {
+    transform: rotate(-60deg) translateZ(0)
+  }
+
+  90% {
+    transform: rotate(-65deg) translateZ(0)
+  }
+
+  95% {
+    transform: rotate(-60deg) translateZ(0)
+  }
+}
+
+@keyframes right-ear-move {
+  15% {
+    transform: rotate(-110deg) translateZ(0)
+  }
+
+  25% {
+    transform: rotate(-110deg) translateZ(0)
+  }
+
+  35% {
+    transform: rotate(-105deg) translateZ(0)
+  }
+
+  55% {
+    transform: rotate(-100deg) translateZ(0)
+  }
+
+  70% {
+    transform: rotate(-100deg) translateZ(0)
+  }
+
+  80% {
+    transform: rotate(-105deg) translateZ(0)
+  }
+
+  85% {
+    transform: rotate(-110deg) translateZ(0)
+  }
+
+  90% {
+    transform: rotate(-105deg) translateZ(0)
+  }
+
+  95% {
+    transform: rotate(-110deg) translateZ(0);
+  }
 }
 
 .left-ear::before {
@@ -88,7 +170,7 @@
 }
 
 .striae:nth-of-type(1) {
-  width: 190px;
+  width: 180px;
   height: 40px;
   background-color: #7a2e15;
   box-shadow: 0px 10px 15px #d99c25;
@@ -96,7 +178,7 @@
 }
 
 .striae:nth-of-type(2) {
-  width: 210px;
+  width: 200px;
   height: 40px;
   background-color: #7a2e15;
   box-shadow: 0px 10px 15px #d99c25;
@@ -105,29 +187,57 @@
 
 .tail {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 20px;
+  bottom: -5px;
+  width: 10px;
+  height: 10px;
   overflow: visible;
+  z-index: 1100;
+  animation-name: swing-tail;
+  animation-duration: 4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes swing-tail {
+  20% {
+    transform: rotate(60deg) translateZ(0) skew(0deg)
+  }
+
+  50% {
+    transform: rotate(-50deg) translateZ(0) skew(0deg)
+  }
+
+  75% {
+    transform: rotate(-30deg) translateZ(0) skew(0deg)
+  }
+
+  85% {
+    transform: rotate(-40deg) translateZ(0) skew(0deg)
+  }
+
+  95% {
+    transform: rotate(30deg) translateZ(0) skew(0deg)
+  }
 }
 
 .tail>:nth-child(1) {
   position: absolute;
-  top: 20px;
-  left: 130px;
-  width: 20px;
-  height: 30px;
+  top: 5px;
+  left: 5px;
+  width: 15px;
+  height: 50px;
   box-shadow: 10px 10px 15px #d99c25;
   background-color: #7a2e15;
   /* 使用translateZ(0)消除锯齿 */
-  transform: rotate(0deg) scale(1) translateZ(0) skew(40deg);
+  transform: rotate(0deg) scale(1) translateZ(0) skew(15deg);
   z-index: 1000;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
 }
 
 .tail>:nth-child(2) {
   position: absolute;
-  top: 40px;
-  left: 127px;
+  top: 45px;
+  left: -8px;
   width: 20px;
   height: 45px;
   box-shadow: 10px 10px 15px #d99c25;
@@ -138,8 +248,8 @@
 
 .tail>:nth-child(3) {
   position: absolute;
-  top: 68px;
-  left: 136px;
+  top: 74px;
+  left: 1px;
   width: 20px;
   height: 50px;
   box-shadow: 10px 10px 15px #d99c25;
@@ -150,8 +260,8 @@
 
 .tail>:nth-child(4) {
   position: absolute;
-  top: 108px;
-  left: 135px;
+  top: 114px;
+  left: 1px;
   width: 20px;
   height: 40px;
   box-shadow: 10px 10px 15px #d99c25;
@@ -162,8 +272,8 @@
 
 .tail>:nth-child(5) {
   position: absolute;
-  top: 145px;
-  left: 145px;
+  top: 151px;
+  left: 10px;
   width: 20px;
   height: 45px;
   box-shadow: 0px 10px 15px #d99c25;
@@ -174,8 +284,8 @@
 
 .tail>:nth-child(6) {
   position: absolute;
-  top: 203px;
-  left: 135px;
+  top: 209px;
+  left: -2px;
   width: 20px;
   height: 50px;
   box-shadow: 10px 10px 15px #d99c25;
@@ -186,8 +296,8 @@
 
 .tail>:nth-child(7) {
   position: absolute;
-  top: 289px;
-  left: 133px;
+  top: 295px;
+  left: -4px;
   width: 20px;
   height: 30px;
   box-shadow: 10px 10px 15px #d99c25;

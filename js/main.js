@@ -174,9 +174,24 @@ const code = `.face {
 
 const container = document.querySelector("#code-area");
 const styleTag = document.querySelector("#styleTag");
+const tail = document.querySelector(".tail");
+
 let playBtn = document.querySelector(".play-btn");
 let speedBtns = document.querySelectorAll(".speed-btn");
 let welcome = document.querySelector(".welcome");
+
+(function a() {
+  let scaleNum = 0;
+  let translateZNum = 0;
+  let skewNum = -20;
+  // let iid = setInterval(() => {
+  //   scaleNum += 30;
+  //   tail.style.transform = `rotate(${scaleNum}deg) translateZ(${translateZNum}) skew(${skewNum}deg)`;
+
+  //   console.log(tail.style.transform);
+  //   scaleNum > 70 && clearInterval(iid);
+  // }, 20);
+})();
 
 // 创建Player构造函数
 function Player() {
